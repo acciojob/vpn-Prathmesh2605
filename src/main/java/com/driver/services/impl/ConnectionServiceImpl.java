@@ -32,7 +32,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         }
         else {
             if (user.getServiceProviderList()==null){
-                throw new Exception("Cannot connect");
+                throw new Exception("Unable to connect");
             }
 
             List<ServiceProvider> serviceProviderList = user.getServiceProviderList();
@@ -94,7 +94,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         if(user1.getMaskedIp()!=null){
             String str = user1.getMaskedIp();
-            String cc = str.substring(0,3); //chopping country code = cc
+            String cc = str.substring(0,3);
 
             if(cc.equals(user.getOriginalCountry().getCode()))
                 return user;
@@ -114,7 +114,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
                 User user2 = connect(senderId,countryName);
                 if (!user2.getConnected()){
-                    throw new Exception("Connection Failed");
+                    throw new Exception("Cannot establish communication");
 
                 }
                 else return user2;
@@ -128,7 +128,7 @@ public class ConnectionServiceImpl implements ConnectionService {
             String countryName = user1.getOriginalCountry().getCountryName().toString();
             User user2 =  connect(senderId,countryName);
             if (!user2.getConnected()){
-                throw new Exception("Connection Failed");
+                throw new Exception("Cannot establish communication");
             }
             else return user2;
 
