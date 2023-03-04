@@ -33,35 +33,37 @@ public class UserServiceImpl implements UserService {
                 country.setCountryName(CountryName.IND);
                 country.setCode(CountryName.IND.toCode());
             }
-            if(countryName.equalsIgnoreCase("USA")){
-                country.setCountryName(CountryName.USA);
-                country.setCode(CountryName.USA.toCode());
-            }
             if(countryName.equalsIgnoreCase("JPN")){
                 country.setCountryName(CountryName.JPN);
                 country.setCode(CountryName.JPN.toCode());
-            }
-            if(countryName.equalsIgnoreCase("CHI")){
-                country.setCountryName(CountryName.CHI);
-                country.setCode(CountryName.CHI.toCode());
             }
             if(countryName.equalsIgnoreCase("AUA")){
                 country.setCountryName(CountryName.AUS);
                 country.setCode(CountryName.AUS.toCode());
             }
+            if(countryName.equalsIgnoreCase("USA")){
+                country.setCountryName(CountryName.USA);
+                country.setCode(CountryName.USA.toCode());
+            }
 
-            country.setUser(user); //reverse linking
+            if(countryName.equalsIgnoreCase("CHI")){
+                country.setCountryName(CountryName.CHI);
+                country.setCode(CountryName.CHI.toCode());
+            }
+
+
+            country.setUser(user);
             user.setOriginalCountry(country);
-            user.setConnected(false); //vpn main goal
+            user.setConnected(false);
 
             String code = country.getCode()+"."+userRepository3.save(user).getId();
-            user.setOriginalIp(code); //new
+            user.setOriginalIp(code);
 
             userRepository3.save(user);
 
 
         }
-        else{  //means user is null
+        else{
             throw new Exception("Country not found");
         }
         return user;

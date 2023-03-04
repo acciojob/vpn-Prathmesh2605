@@ -40,8 +40,8 @@ public class AdminServiceImpl implements AdminService {
         Admin admin = adminRepository1.findById(adminId).get();
         ServiceProvider serviceProvider = new ServiceProvider();
 
-        serviceProvider.setAdmin(admin);
         serviceProvider.setName(providerName);
+        serviceProvider.setAdmin(admin);
         admin.getServiceProviders().add(serviceProvider);
         adminRepository1.save(admin);
         return admin;
@@ -58,22 +58,23 @@ public class AdminServiceImpl implements AdminService {
                 country.setCountryName(CountryName.IND);
                 country.setCode(CountryName.IND.toCode());
             }
-            if(countryName.equalsIgnoreCase("USA")){
-                country.setCountryName(CountryName.USA);
-                country.setCode(CountryName.USA.toCode());
+            if(countryName.equalsIgnoreCase("AUS")){
+                country.setCountryName(CountryName.AUS);
+                country.setCode(CountryName.AUS.toCode());
             }
             if(countryName.equalsIgnoreCase("JPN")){
                 country.setCountryName(CountryName.JPN);
                 country.setCode(CountryName.JPN.toCode());
             }
+            if(countryName.equalsIgnoreCase("USA")){
+                country.setCountryName(CountryName.USA);
+                country.setCode(CountryName.USA.toCode());
+            }
             if(countryName.equalsIgnoreCase("CHI")){
                 country.setCountryName(CountryName.CHI);
                 country.setCode(CountryName.CHI.toCode());
             }
-            if(countryName.equalsIgnoreCase("AUS")){
-                country.setCountryName(CountryName.AUS);
-                country.setCode(CountryName.AUS.toCode());
-            }
+
             country.setServiceProvider(serviceProvider);
             serviceProvider.getCountryList().add(country);
             serviceProviderRepository1.save(serviceProvider);
